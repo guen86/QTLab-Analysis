@@ -4,7 +4,7 @@ from enthought.chaco.api import Plot, ArrayPlotData, jet, PlotAxis, LinearMapper
 from enthought.chaco.tools.api import LineInspector, PanTool, RangeSelection, RangeSelectionOverlay, ZoomTool
 from enthought.enable.component_editor import ComponentEditor
 from enthought.chaco import default_colormaps
-from enthought.enable.api import Window
+from enthought.enable.qt4.image import Window
 from numpy import *
 from numpy.random import random
 from enthought.traits.ui.menu import Action, CloseAction, Menu, MenuBar, NoButtons, Separator

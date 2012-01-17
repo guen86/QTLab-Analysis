@@ -129,5 +129,3 @@ class Ui_QTLabAnalysis(object):
 
     def retranslateUi(self, QTLabAnalysis):
         pass
-
-from chaco_plot import ColorPlot, TracePlot

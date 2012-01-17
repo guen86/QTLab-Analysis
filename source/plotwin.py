@@ -13,7 +13,6 @@ from PyQt4 import QtCore, QtGui
 QtCore.pyqtRemoveInputHook()
 
 from plotwin_ui import Ui_QTLabAnalysis
-from chaco_plot import ColorPlot, LinePlot
 
 import qtclient as qt
 from data import Data
