@@ -13,7 +13,7 @@ try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
     _fromUtf8 = lambda s: s
-
+    
 class Ui_QTLabAnalysis(object):
     def setupUi(self, QTLabAnalysis):
         QTLabAnalysis.setObjectName(_fromUtf8("QTLabAnalysis"))

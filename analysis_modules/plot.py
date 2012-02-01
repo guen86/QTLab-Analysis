@@ -1,7 +1,6 @@
 from modules.analyse_general import *
 from modules.dialogs import InputField
 from general import plot_types
-import chaco_plot
 from enthought.traits.api import HasTraits, Instance
 from enthought.traits.ui.api import View, Item
 from enthought.chaco.api import Plot, ArrayPlotData, jet, PlotAxis, LinearMapper, ColorBar, HPlotContainer
@@ -9,9 +8,20 @@ from enthought.chaco.tools.api import RangeSelection, RangeSelectionOverlay
 from enthought.enable.component_editor import ComponentEditor
 from numpy import linspace, sin, exp, meshgrid, zeros
 reload(plot_types)
-# Get input
-# bla = InputField('Line type:')
-# plotwindow.ui.plot2d._type = bla._value
+from PyQt4 import QtGui
+import inputwin
+reload(inputwin)
+from inputwin import InputWin
+
+def get_input_params(plotwindow, parameters):
+    '''
+    Get input parameters
+    Input:
+        parameters: [(str)] String vector with names of input parameters
+    '''
+    inputwin = InputWin(parameters)
+    if inputwin.exec_():
+        return inputwin.getParameters()      
 
 def plot2d(plotwindow, name, x, y, colname_x, colname_y):
     '''
@@ -52,7 +62,6 @@ def plot_waterfall(plotwindow, name, x, y, z, colname_x, colname_y, colname_z):
     z = reshape(z, (len(y), len(x)))
     # Plot new figure
     plotwindow.lineplot = plot_types.LinePlot(name, colname_x, x, colname_z, z[0], "line", "blue")
-    plotwindow.lineplot.configure_traits()
 
 def new_data_point(plotwindow):
     '''
@@ -89,6 +98,9 @@ def run(plotwindow):
     '''
     Run the analysis code
     '''
+    parameters = ['test1', 'test2', 'test3', 'test4', 'test1', 'test2', 'test3', 'test4', 'test1', 'test2', 'test3', 'test4', 'test1', 'test2', 'test3', 'test4', 'test1', 'test2', 'test3', 'test4']
+    print get_input_params(plotwindow, parameters)
+    
     # Get x, y cols
     colname_x = str(plotwindow.ui.x_combobox.currentText())
     colname_y = str(plotwindow.ui.y_combobox.currentText())

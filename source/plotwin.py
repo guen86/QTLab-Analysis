@@ -4,10 +4,6 @@
 # Author: Guenevere Prawiroatmodjo <guen@vvtp.tudelft.nl>
 #
 
-## TODO'S
-# Input parameter schermpje
-# 
-
 import sys
 from PyQt4 import QtCore, QtGui
 QtCore.pyqtRemoveInputHook()
@@ -191,6 +187,12 @@ class PlotWin(QtGui.QMainWindow):
             self._holdon = True
         else:
             self._holdon = False
+            
+    def accept():
+        print 'accepted'
+
+    def reject():
+        print 'cancelled'
         
     
     def new_data_point(self, *args):

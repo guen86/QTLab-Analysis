@@ -7,8 +7,10 @@ from enthought.chaco import default_colormaps
 from enthought.enable.qt4.image import Window
 from numpy import *
 from numpy.random import random
-from enthought.traits.ui.menu import Action, CloseAction, Menu, MenuBar, NoButtons, Separator
+from enthought.traits.ui.menu import Action, CloseAction, Menu, MenuBar, NoButtons, Separator, OKCancelButtons
 from PyQt4 import QtGui
+from enthought.chaco.toolbar_plot import ToolbarPlot 
+from chaco.tools.toolbars.plot_toolbar import PlotToolbar
 
 class LinePlot(QtGui.QWidget):
     def __init__(self, parent, title, x, y, xtitle, ytitle, type="line", color="blue"):
@@ -30,7 +32,7 @@ class LinePlot(QtGui.QWidget):
 
     def _create_window(self, title, xtitle, x, ytitle, y, type="line", color="blue"):
         self.plotdata = ArrayPlotData(x=x, y=y)
-        plot = Plot(self.plotdata)
+        plot = ToolbarPlot(self.plotdata)
         plot.plot(('x', 'y'), type=type, color=color)
         plot.title = title
         plot.x_axis.title = xtitle
@@ -94,7 +96,7 @@ class ImagePlot(QtGui.QWidget):
         # Create window
         self._plotname = title
         self.data = ArrayPlotData()
-        self.plot = Plot(self.data)      
+        self.plot = ToolbarPlot(self.data, hiding=False, auto_hide=False)
         self.update_plot(x, y, z)
         self.plot.title = title
         self.plot.x_axis.title = xtitle
@@ -119,7 +121,7 @@ class ImagePlot(QtGui.QWidget):
         self.container = container
 
         # Return a window containing our plot container
-        return Window(self, -1, component=container)
+        return Window(self, -1, component=self.container)
 
     def update_plot(self, x, y, z):
         self.data.set_data('x', x)
