@@ -91,4 +91,4 @@ if __name__ == "__main__":
     from plotwin import PlotWin
     plotwindow = PlotWin()
     plotwindow.show()
-    #sys.exit(qtlabanalysis_app.exec_())
+    sys.exit(qtlabanalysis_app.exec_())
